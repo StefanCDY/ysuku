@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+    <view class="com.company.ysuku.entity.Category"
+          extends="_local"
+          name="category-view">
+        <property name="parentCategory"
+                  view="_minimal"/>
+    </view>
+    <view class="com.company.ysuku.entity.Address"
+          extends="_local"
+          name="address-view">
+        <property name="user"
+                  view="_minimal">
+        </property>
+    </view>
+    <view class="com.company.ysuku.entity.Book"
+          extends="_local"
+          name="book-view">
+        <property name="category"
+                  view="_minimal"/>
+        <property name="author"
+                  view="_minimal"/>
+        <property name="publisher"
+                  view="_minimal"/>
+    </view>
+    <view class="com.company.ysuku.entity.Order"
+          extends="_local"
+          name="order-view">
+        <property name="user"
+                  view="_minimal"/>
+        <property name="address"
+                  view="_minimal">
+            <property name="receiver"/>
+            <property name="province"/>
+            <property name="city"/>
+            <property name="address"/>
+        </property>
+        <property name="detailList"
+                  view="_minimal">
+            <property name="type"/>
+            <property name="book"
+                      view="_minimal"/>
+            <property name="unitPrice"/>
+            <property name="amount"/>
+            <property name="memo"/>
+        </property>
+    </view>
+</views>

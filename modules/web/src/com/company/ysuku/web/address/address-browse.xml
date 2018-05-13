@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.ysuku.web.address.AddressBrowse"
+        focusComponent="addressesTable"
+        lookupComponent="addressesTable"
+        messagesPack="com.company.ysuku.web.address">
+    <dsContext>
+        <collectionDatasource id="addressesDs"
+                              class="com.company.ysuku.entity.Address"
+                              view="address-view">
+            <query>
+                <![CDATA[select e from ysuku$Address e order by e.createTs desc]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="addressesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="addressesTable"
+                datasource="addressesDs">
+            <properties include=".*"/>
+        </filter>
+        <table id="addressesTable"
+               presentations="true"
+               width="100%">
+            <actions>
+                <action id="create"
+                        openType="DIALOG"/>
+                <action id="edit"
+                        openType="DIALOG"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+            </actions>
+            <columns>
+                <column id="user"
+                        align="CENTER"/>
+                <column id="receiver"
+                        align="CENTER"/>
+                <column id="province"
+                        align="CENTER"/>
+                <column id="city"
+                        align="CENTER"/>
+                <column id="address"
+                        align="CENTER"/>
+                <column id="memo"
+                        align="CENTER"/>
+            </columns>
+            <rows datasource="addressesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="addressesTable.create"/>
+                <button id="editBtn"
+                        action="addressesTable.edit"/>
+                <button id="removeBtn"
+                        action="addressesTable.remove"/>
+                <button id="refreshBtn"
+                        action="addressesTable.refresh"/>
+            </buttonsPanel>
+        </table>
+    </layout>
+</window>

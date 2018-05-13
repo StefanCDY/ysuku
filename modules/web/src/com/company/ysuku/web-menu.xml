@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-ysuku"
+          insertBefore="administration">
+        <item screen="ysuku$User.browse"/>
+        <item screen="ysuku$Category.browse"/>
+        <item screen="ysuku$Author.browse"/>
+        <item screen="ysuku$Publisher.browse"/>
+        <item screen="ysuku$Address.browse"/>
+        <item screen="ysuku$Book.browse"/>
+        <item screen="ysuku$Order.browse"/>
+    </menu>
+</menu-config>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.ysuku.web.order.OrderEdit"
+        datasource="orderDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.ysuku.web.order">
+    <dsContext>
+        <datasource id="orderDs"
+                    class="com.company.ysuku.entity.Order"
+                    view="order-view">
+            <collectionDatasource id="detailListDs"
+                                  property="detailList"/>
+        </datasource>
+        <collectionDatasource id="usersDs"
+                              class="com.company.ysuku.entity.User"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from ysuku$User e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="addressesDs"
+                              class="com.company.ysuku.entity.Address"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from ysuku$Address e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="AUTO"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="orderDs"
+                    width="100%">
+            <column>
+                <field property="code"/>
+                <field optionsDatasource="usersDs"
+                       property="user"/>
+                <field optionsDatasource="addressesDs"
+                       property="address"/>
+                <field property="payType"/>
+                <field property="invoiceType"/>
+                <field property="memo"
+                       width="100%"/>
+            </column>
+        </fieldGroup>
+        <groupBox id="groupBox"
+                  caption="msg://order.detailList"
+                  spacing="true">
+            <table id="detailListTable"
+                   presentations="true"
+                   width="100%">
+                <actions>
+                    <action id="create"
+                            caption="msg://actions.Create"
+                            icon="ADD_ACTION"
+                            invoke="onCreate"/>
+                    <action id="remove"/>
+                </actions>
+                <columns>
+                    <column id="type"
+                            align="CENTER"/>
+                    <column id="book"
+                            align="CENTER"/>
+                    <column id="unitPrice"
+                            align="CENTER"/>
+                    <column id="amount"
+                            align="CENTER"/>
+                    <column id="memo"
+                            align="CENTER"/>
+                </columns>
+                <rows datasource="detailListDs"/>
+                <rowsCount/>
+                <buttonsPanel id="buttonsPanel"
+                              alwaysVisible="true">
+                    <button id="createBtn"
+                            action="detailListTable.create"/>
+                    <button id="removeBtn"
+                            action="detailListTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

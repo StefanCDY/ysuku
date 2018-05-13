@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.ysuku.web.book.BookEdit"
+        datasource="bookDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.ysuku.web.book">
+    <dsContext>
+        <datasource id="bookDs"
+                    class="com.company.ysuku.entity.Book"
+                    view="book-view"/>
+        <collectionDatasource id="categoriesDs"
+                              class="com.company.ysuku.entity.Category"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from ysuku$Category e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="authorsDs"
+                              class="com.company.ysuku.entity.Author"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from ysuku$Author e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="publishersDs"
+                              class="com.company.ysuku.entity.Publisher"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from ysuku$Publisher e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="AUTO"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="bookDs"
+                    width="100%">
+            <column>
+                <field property="name"/>
+                <field optionsDatasource="categoriesDs"
+                       property="category"/>
+                <field optionsDatasource="authorsDs"
+                       property="author"/>
+                <field optionsDatasource="publishersDs"
+                       property="publisher"/>
+                <field property="publishDate"/>
+                <field property="pageCount"/>
+                <field property="description"
+                       rows="5"
+                       width="100%"/>
+                <field property="memo"
+                       width="100%"/>
+            </column>
+            <column>
+                <field property="isbn"/>
+                <field property="purchase_price"/>
+                <field property="sale_price"/>
+                <field property="discount_price"/>
+                <field property="printDate"/>
+                <field property="wordCount"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

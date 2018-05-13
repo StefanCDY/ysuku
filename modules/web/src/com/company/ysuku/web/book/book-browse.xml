@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.ysuku.web.book.BookBrowse"
+        focusComponent="booksTable"
+        lookupComponent="booksTable"
+        messagesPack="com.company.ysuku.web.book">
+    <dsContext>
+        <collectionDatasource id="booksDs"
+                              class="com.company.ysuku.entity.Book"
+                              view="book-view">
+            <query>
+                <![CDATA[select e from ysuku$Book e order by e.createTs desc]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="booksTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="booksTable"
+                datasource="booksDs">
+            <properties include=".*"/>
+        </filter>
+        <table id="booksTable"
+               presentations="true"
+               width="100%">
+            <actions>
+                <action id="create"
+                        openType="DIALOG"/>
+                <action id="edit"
+                        openType="DIALOG"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+            </actions>
+            <columns>
+                <column id="name"
+                        align="CENTER"/>
+                <column id="isbn"
+                        align="CENTER"/>
+                <column id="category"
+                        align="CENTER"/>
+                <column id="author"
+                        align="CENTER"/>
+                <column id="publisher"
+                        align="CENTER"/>
+                <column id="sale_price"
+                        align="CENTER"/>
+                <column id="purchase_price"
+                        align="CENTER"/>
+                <column id="discount_price"
+                        align="CENTER"/>
+                <column id="publishDate"
+                        align="CENTER"/>
+                <column id="printDate"
+                        align="CENTER"/>
+                <column id="pageCount"
+                        align="CENTER"/>
+                <column id="wordCount"
+                        align="CENTER"/>
+                <column id="description"
+                        align="CENTER"/>
+                <column id="memo"
+                        align="CENTER"/>
+            </columns>
+            <rows datasource="booksDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="booksTable.create"/>
+                <button id="editBtn"
+                        action="booksTable.edit"/>
+                <button id="removeBtn"
+                        action="booksTable.remove"/>
+                <button id="refreshBtn"
+                        action="booksTable.refresh"/>
+            </buttonsPanel>
+        </table>
+    </layout>
+</window>

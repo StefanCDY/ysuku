@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.ysuku.web.order.OrderBrowse"
+        focusComponent="ordersTable"
+        lookupComponent="ordersTable"
+        messagesPack="com.company.ysuku.web.order">
+    <dsContext>
+        <collectionDatasource id="ordersDs"
+                              class="com.company.ysuku.entity.Order"
+                              view="order-view">
+            <query>
+                <![CDATA[select e from ysuku$Order e order by e.createTs desc]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="ordersTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="ordersTable"
+                datasource="ordersDs">
+            <properties include=".*"/>
+        </filter>
+        <table id="ordersTable"
+               presentations="true"
+               width="100%">
+            <actions>
+                <action id="create"
+                        openType="DIALOG"/>
+                <action id="edit"
+                        openType="DIALOG"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+            </actions>
+            <columns>
+                <column id="code"
+                        align="CENTER"/>
+                <column id="user"
+                        align="CENTER"/>
+                <column id="address"
+                        align="CENTER"/>
+                <column id="payType"
+                        align="CENTER"/>
+                <column id="invoiceType"
+                        align="CENTER"/>
+                <column id="memo"
+                        align="CENTER"/>
+            </columns>
+            <rows datasource="ordersDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="ordersTable.create"/>
+                <button id="editBtn"
+                        action="ordersTable.edit"/>
+                <button id="removeBtn"
+                        action="ordersTable.remove"/>
+                <button id="refreshBtn"
+                        action="ordersTable.refresh"/>
+            </buttonsPanel>
+        </table>
+    </layout>
+</window>

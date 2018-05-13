@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.ysuku.web.user.UserBrowse"
+        focusComponent="usersTable"
+        lookupComponent="usersTable"
+        messagesPack="com.company.ysuku.web.user">
+    <dsContext>
+        <collectionDatasource id="usersDs"
+                              class="com.company.ysuku.entity.User"
+                              view="_local">
+            <query>
+                <![CDATA[select e from ysuku$User e order by e.createTs desc]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="usersTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="usersTable"
+                datasource="usersDs">
+            <properties include=".*"/>
+        </filter>
+        <table id="usersTable"
+               presentations="true"
+               width="100%">
+            <actions>
+                <action id="create"
+                        openType="DIALOG"/>
+                <action id="edit"
+                        openType="DIALOG"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+            </actions>
+            <columns>
+                <column id="name"
+                        align="CENTER"/>
+                <column id="gender"
+                        align="CENTER"/>
+                <column id="password"
+                        align="CENTER"/>
+                <column id="birthday"
+                        align="CENTER"/>
+                <column id="mobile"
+                        align="CENTER"/>
+                <column id="email"
+                        align="CENTER"/>
+                <column id="memo"
+                        align="CENTER"/>
+            </columns>
+            <rows datasource="usersDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="usersTable.create"/>
+                <button id="editBtn"
+                        action="usersTable.edit"/>
+                <button id="removeBtn"
+                        action="usersTable.remove"/>
+                <button id="refreshBtn"
+                        action="usersTable.refresh"/>
+            </buttonsPanel>
+        </table>
+    </layout>
+</window>

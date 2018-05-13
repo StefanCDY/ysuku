@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.ysuku.web.publisher.PublisherBrowse"
+        focusComponent="publishersTable"
+        lookupComponent="publishersTable"
+        messagesPack="com.company.ysuku.web.publisher">
+    <dsContext>
+        <collectionDatasource id="publishersDs"
+                              class="com.company.ysuku.entity.Publisher"
+                              view="_local">
+            <query>
+                <![CDATA[select e from ysuku$Publisher e order by e.createTs desc]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="publishersTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="publishersTable"
+                datasource="publishersDs">
+            <properties include=".*"/>
+        </filter>
+        <table id="publishersTable"
+               presentations="true"
+               width="100%">
+            <actions>
+                <action id="create"
+                        openType="DIALOG"/>
+                <action id="edit"
+                        openType="DIALOG"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+            </actions>
+            <columns>
+                <column id="name"
+                        align="CENTER"/>
+                <column id="name_en"
+                        align="CENTER"/>
+                <column id="address"
+                        align="CENTER"/>
+                <column id="description"
+                        align="CENTER"/>
+                <column id="memo"
+                        align="CENTER"/>
+            </columns>
+            <rows datasource="publishersDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="publishersTable.create"/>
+                <button id="editBtn"
+                        action="publishersTable.edit"/>
+                <button id="removeBtn"
+                        action="publishersTable.remove"/>
+                <button id="refreshBtn"
+                        action="publishersTable.refresh"/>
+            </buttonsPanel>
+        </table>
+    </layout>
+</window>

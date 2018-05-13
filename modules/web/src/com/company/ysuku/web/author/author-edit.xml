@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.ysuku.web.author.AuthorEdit"
+        datasource="authorDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.ysuku.web.author">
+    <dsContext>
+        <datasource id="authorDs"
+                    class="com.company.ysuku.entity.Author"
+                    view="_local"/>
+    </dsContext>
+    <dialogMode height="AUTO"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="authorDs"
+                    width="100%">
+            <column>
+                <field property="name"/>
+                <field property="description"
+                       rows="5"
+                       width="100%"/>
+                <field property="memo" width="100%"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

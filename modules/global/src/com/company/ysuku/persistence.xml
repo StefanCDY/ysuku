@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             version="2.0">
+    <persistence-unit name="ysuku"
+                      transaction-type="RESOURCE_LOCAL">
+        <class>com.company.ysuku.entity.Category</class>
+        <class>com.company.ysuku.entity.Book</class>
+        <class>com.company.ysuku.entity.User</class>
+        <class>com.company.ysuku.entity.Address</class>
+        <class>com.company.ysuku.entity.Publisher</class>
+        <class>com.company.ysuku.entity.Author</class>
+        <class>com.company.ysuku.entity.Order</class>
+        <class>com.company.ysuku.entity.OrderDetail</class>
+    </persistence-unit>
+</persistence>

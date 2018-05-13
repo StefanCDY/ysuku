@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.ysuku.web.category.CategoryEdit"
+        datasource="categoryDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.ysuku.web.category">
+    <dsContext>
+        <datasource id="categoryDs"
+                    class="com.company.ysuku.entity.Category"
+                    view="category-view"/>
+        <collectionDatasource id="categoriesDs"
+                              class="com.company.ysuku.entity.Category"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from ysuku$Category e where e.id <> :ds$categoryDs]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="AUTO"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="categoryDs"
+                    width="100%">
+            <column>
+                <field optionsDatasource="categoriesDs"
+                       property="parentCategory"/>
+                <field property="name"/>
+                <field property="description" width="100%"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.ysuku.web.address.AddressEdit"
+        datasource="addressDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.ysuku.web.address">
+    <dsContext>
+        <datasource id="addressDs"
+                    class="com.company.ysuku.entity.Address"
+                    view="address-view"/>
+        <collectionDatasource id="usersDs"
+                              class="com.company.ysuku.entity.User"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from ysuku$User e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="AUTO"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="addressDs"
+                    width="100%">
+            <column>
+                <field optionsDatasource="usersDs"
+                       property="user"/>
+                <field property="receiver"/>
+                <field property="province"/>
+                <field property="city"/>
+                <field property="address" width="100%"/>
+                <field property="memo" width="100%"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>
